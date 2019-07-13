@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+	<extension
+	      point="org.eclipse.ui.preferencePages">
+	   <page
+          category="Code Generator"
+          class="com.cgc.tools.codegen.preferences.SourcePage"
+          id="Source"
+          name="Source Settings"/>
+    <page
+          class="org.eclipse.ui.internal.dialogs.EmptyPreferencePage"
+          id="Code Generator"
+          name="Code Generator">
+    </page>
+    <page
+          category="Code Generator"
+          class="com.cgc.tools.codegen.preferences.DatabasePage"
+          id="Database Settings"
+          name="Database Settings"/>
+    <page
+          category="Code Generator"
+          class="com.cgc.tools.codegen.preferences.TemplatePage"
+          id="Templets Settings"
+          name="Templets Settings"/>
+	</extension>
+	<extension
+       point="org.eclipse.core.runtime.preferences">
+	   <initializer class="com.cgc.tools.codegen.preferences.PreferenceInitializer"/>
+	</extension>
+	<extension
+	      point="org.eclipse.ui.newWizards">
+	   <wizard
+	         category="Code Generator"
+	         class="com.cgc.tools.codegen.wizards.CodegenNewWizard"
+	         descriptionImage="icons/edtsrclkup_wiz.gif"
+	         icon="icons/ICON_TITLE_NEWS.GIF"
+	         id="com.cgc.tools.codegen.wizards.CodegenNewWizard"
+	         name="Code Generator Wizard"/>
+    <category
+          id="Code Generator"
+          name="Generator Wizards"/>
+	</extension>
+</plugin>
