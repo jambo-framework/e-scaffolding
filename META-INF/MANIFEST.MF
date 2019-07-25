@@ -14,9 +14,10 @@ Bundle-ClassPath: lib/commons-beanutils.jar,
  lib/commons-lang-2.0.jar,
  lib/commons-logging.jar,
  lib/hibernate3.jar,
- lib/ifxjdbc.jar,
  lib/jdom.jar,
  lib/log4j.jar,
  lib/velocity-1.5.jar,
  lib/velocity-dep-1.5.jar,
- codegen.jar
+ codegen.jar,
+ lib/postgresql-9.4.1212.jar,
+ lib/mysql-connector-java-5.1.6.jar

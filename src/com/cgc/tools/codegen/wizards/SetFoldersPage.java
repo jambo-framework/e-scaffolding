@@ -91,7 +91,7 @@ public class SetFoldersPage extends WizardPage {
             };
         
         Label lblSrcFolder = new Label(composite, SWT.NONE);
-        lblSrcFolder.setText("源文件目录");
+        lblSrcFolder.setText("src directory");
 
         Composite txtAndBtn = new Composite(composite, SWT.NONE);
         txtAndBtn.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -104,7 +104,7 @@ public class SetFoldersPage extends WizardPage {
         btnSrcFolder.addSelectionListener(new SelectionListener() {
                 public void widgetSelected(SelectionEvent e) {
                     DirectoryDialog dd = new DirectoryDialog(parent.getShell());
-                    dd.setText("源文件目录");
+                    dd.setText("select directory");
 
                     String path = dd.open();
 
@@ -142,7 +142,7 @@ public class SetFoldersPage extends WizardPage {
         txtTestFolder.addModifyListener(ml);
 
         Label lblWebFolder = new Label(composite, SWT.NONE);
-        lblWebFolder.setText("Web模块目录");
+        lblWebFolder.setText("Web directory");
         Composite txtAndBtn3 = new Composite(composite, SWT.NONE);
         txtAndBtn3.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         txtAndBtn3.setLayout(new GridLayout(2, false));
@@ -189,9 +189,9 @@ public class SetFoldersPage extends WizardPage {
                         + "." 
                         + "persistent");
                     
-                    lblI18nPackage.setText("com." + ValueStore.projname + ".web." +
-                    		txtModuleName.getText() + "." +
-                    		ValueStore.baseClassName.toLowerCase());
+//                    lblI18nPackage.setText("com." + ValueStore.projname + ".web." +
+//                    		txtModuleName.getText() + "." +
+//                    		ValueStore.baseClassName.toLowerCase());
                     lblViewPackage.setText("com." + ValueStore.projname + ".web." +
                             txtModuleName.getText() + "." +
                             ValueStore.baseClassName.toLowerCase());
@@ -219,10 +219,10 @@ public class SetFoldersPage extends WizardPage {
         lblViewPackage = new Label(composite, SWT.NONE);
 		lblViewPackage.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-        Label lblI18nFolder = new Label(composite, SWT.NONE);
-        lblI18nFolder.setText("resource package name");
-        lblI18nPackage = new Label(composite, SWT.NONE);
-		lblI18nPackage.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+//        Label lblI18nFolder = new Label(composite, SWT.NONE);
+//        lblI18nFolder.setText("resource package name");
+//        lblI18nPackage = new Label(composite, SWT.NONE);
+//		lblI18nPackage.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
     }
 
@@ -253,8 +253,8 @@ public class SetFoldersPage extends WizardPage {
     public IWizardPage getNextPage() {
         if (ValueStore.genOrNot[Constants.HBM]) {
             return ((CodegenNewWizard) getWizard()).hbmPage;
-        } else if (ValueStore.genOrNot[Constants.QUERYPARAM]) {
-            return ((CodegenNewWizard) getWizard()).paramsPage;
+//        } else if (ValueStore.genOrNot[Constants.QUERYPARAM]) {
+//            return ((CodegenNewWizard) getWizard()).paramsPage;
         }
         return ((CodegenNewWizard) getWizard()).lastPage;
     }
@@ -291,11 +291,11 @@ public class SetFoldersPage extends WizardPage {
 
         lblHbmPackage.setEnabled(ValueStore.genOrNot[Constants.HBM]);
         //&&ValueStore.genOrNot[Constants.DELEGATE]
-        lblControlPackage.setEnabled(ValueStore.genOrNot[Constants.EJB]);
-        lblModelPackage.setEnabled(ValueStore.genOrNot[Constants.VO] &&
-            ValueStore.genOrNot[Constants.QUERYPARAM] &&
-            ValueStore.genOrNot[Constants.DAO]);
-        txtTestFolder.setEnabled(ValueStore.genOrNot[Constants.TEST]);
-        btnTestFolder.setEnabled(ValueStore.genOrNot[Constants.TEST]);
+//        lblControlPackage.setEnabled(ValueStore.genOrNot[Constants.EJB]);
+//        lblModelPackage.setEnabled(ValueStore.genOrNot[Constants.VO] &&
+//            ValueStore.genOrNot[Constants.QUERYPARAM] &&
+//            ValueStore.genOrNot[Constants.DAO]);
+//        txtTestFolder.setEnabled(ValueStore.genOrNot[Constants.TEST]);
+//        btnTestFolder.setEnabled(ValueStore.genOrNot[Constants.TEST]);
     }
 }

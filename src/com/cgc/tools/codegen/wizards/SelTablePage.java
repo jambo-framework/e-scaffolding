@@ -95,7 +95,7 @@ public class SelTablePage extends WizardPage {
 		});
 
 		TableColumn tc1 = new TableColumn(table, SWT.LEFT);
-		tc1.setText("±í Ãû");
+		tc1.setText("Table Name");
 		tc1.setWidth(gridData.widthHint);
 
 		fillTable();

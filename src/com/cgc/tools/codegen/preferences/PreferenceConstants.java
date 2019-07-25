@@ -21,6 +21,6 @@ public class PreferenceConstants {
     public static final String FRAMEWORK="Struts";
     public static final String TEMPLATE_PATH="default";
     //ÏîÄ¿Ãû³Æ
-    public static final String PROJECT_NAME="boss";
+    public static final String PROJECT_NAME="ecf";
     
 }

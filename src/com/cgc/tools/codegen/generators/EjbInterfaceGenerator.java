@@ -27,7 +27,7 @@ public class EjbInterfaceGenerator extends BaseGenerator {
 		}
 		context.put("poClassName", getPojoClassName()) ;
 		context.put("modelPkg", getModelPkg()) ;
-		context.put("isListVO", new Boolean(ValueStore.genOrNot[Constants.QUERYPARAM])) ;
+//		context.put("isListVO", new Boolean(ValueStore.genOrNot[Constants.QUERYPARAM])) ;
 		context.put("listVOClassName", getParamClassName()) ;
 		context.put("daoClassName", getDaoClassName()) ;
 		context.put("date", new Date()) ;

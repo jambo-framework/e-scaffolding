@@ -38,6 +38,8 @@ import com.cgc.tools.codegen.util.ValueStore;
 public class CodegenNewWizard extends Wizard implements INewWizard {
 	private static final Log log = LogFactory.getLog(CodegenNewWizard.class);
 
+	ProductPage productPage;
+	
 	SetNamesPage namesPage;
 
 	SetFoldersPage foldersPage;
@@ -66,6 +68,8 @@ public class CodegenNewWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		if (ValueStore.connection == null)
 			return;
+		productPage = new ProductPage("productPage");
+		addPage(productPage);
 		tablePage = new SelTablePage("tablePage");
 		addPage(tablePage);
 		namesPage = new SetNamesPage("namesPage");
@@ -177,41 +181,47 @@ public class CodegenNewWizard extends Wizard implements INewWizard {
 			if (ValueStore.connection != null){
 				mg.generate(ValueStore.connection); 
 			}
-			//dao
-			if (ValueStore.genOrNot[Constants.DAO]) {
+			//BACKEND
+			if (ValueStore.genOrNot[Constants.BACKEND]) {
 				msGen.generate();
+				
 			}
+			//dao
+//			if (ValueStore.genOrNot[Constants.DAO]) {
+//				msGen.generate();
+//			}
 			//dbqueryparam
-			if(ValueStore.genOrNot[Constants.QUERYPARAM]){
-				paramGen.generate();
-			}
+//			if(ValueStore.genOrNot[Constants.QUERYPARAM]){
+//				paramGen.generate();
+//			}
 			//bo
-			if(ValueStore.genOrNot[Constants.EJB]){
-				boGen.generate();
-			}
+//			if(ValueStore.genOrNot[Constants.EJB]){
+//				boGen.generate();
+//			}
 			//I18N×ÊÔ´ 
-			if(ValueStore.genOrNot[Constants.I18N]){
-				i18Gen.generate();
-			}
+//			if(ValueStore.genOrNot[Constants.I18N]){
+//				i18Gen.generate();
+//			}
 			//action
 			if(ValueStore.genOrNot[Constants.WEB]){				
-				actionGen.generate();
-				formGen.generate();	
+//				actionGen.generate();
+//				formGen.generate();	
 			}
 			//webÒ³Ãæ
-			if(ValueStore.genOrNot[Constants.PAGE]){
-				listGen.generate();
-				contentGen.generate();
-			}
+//			if(ValueStore.genOrNot[Constants.PAGE]){
+//				listGen.generate();
+//				contentGen.generate();
+//			}
 			//test
-			if(ValueStore.genOrNot[Constants.TEST]){
-				testGen.generate();
-			}
+//			if(ValueStore.genOrNot[Constants.TEST]){
+//				testGen.generate();
+//			}
 			
-			if(ValueStore.genOrNot[Constants.DUBBO]){
-				serviceGen.generate();
-				serviceImplGen.generate();
-			}
+//			if(ValueStore.genOrNot[Constants.DUBBO]){
+//				serviceGen.generate();
+//				serviceImplGen.generate();
+//			}
+			
 			if (isCloseConn){
 				ValueStore.connection.close();
 			}

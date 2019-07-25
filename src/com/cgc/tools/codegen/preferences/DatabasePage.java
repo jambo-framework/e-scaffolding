@@ -19,16 +19,17 @@ public class DatabasePage extends FieldEditorPreferencePage implements
 	public DatabasePage() {
 		super(GRID);
 		setPreferenceStore(CodegenPlugin.getDefault().getPreferenceStore());
-		setDescription("Set general connection preference:");
+		setDescription("General database connection preference:");
 	}
 
 	protected void createFieldEditors() {
 		addField(new ComboFieldEditor(PreferenceConstants.DRIVER_CLASS,
 				"&Driver Class:", 40, new String[] {
-						"com.informix.jdbc.IfxDriver",
+//						"com.informix.jdbc.IfxDriver",
 						"com.mysql.jdbc.Driver",
-						"org.postgresql.Driver",
-						"oracle.jdbc.driver.OracleDriver" },
+//				"oracle.jdbc.driver.OracleDriver", 
+						"org.postgresql.Driver"
+						},
 				getFieldEditorParent()));
 		addField(new StringFieldEditor(PreferenceConstants.CONNECTION_URL,
 				"C&onnection URL:", 48, getFieldEditorParent()));

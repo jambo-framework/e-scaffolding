@@ -192,9 +192,9 @@ public class HbmConfigPage extends WizardPage {
      * @see org.eclipse.jface.wizard.IWizardPage#getNextPage()
      */
     public IWizardPage getNextPage() {
-        if (ValueStore.genOrNot[Constants.QUERYPARAM]) {
-            return ((CodegenNewWizard) getWizard()).paramsPage;
-        }
+//        if (ValueStore.genOrNot[Constants.QUERYPARAM]) {
+//            return ((CodegenNewWizard) getWizard()).paramsPage;
+//        }
 
         return ((CodegenNewWizard) getWizard()).lastPage;
     }

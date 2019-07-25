@@ -197,7 +197,7 @@ public abstract class BaseGenerator {
         context.put("serviceClassName", getServiceClassName()) ;
         context.put("serviceImplClassName", getServiceImplClassName()) ;
 
-        context.put("isParam", new Boolean(ValueStore.genOrNot[Constants.QUERYPARAM])) ;
+//        context.put("isParam", new Boolean(ValueStore.genOrNot[Constants.QUERYPARAM])) ;
         context.put("date", new Date());
         context.put("author", ValueStore.author);
 

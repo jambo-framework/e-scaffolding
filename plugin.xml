@@ -39,6 +39,6 @@
 	         name="Code Generator Wizard"/>
     <category
           id="Code Generator"
-          name="Generator Wizards"/>
+          name="Code Generator Wizards"/>
 	</extension>
 </plugin>
