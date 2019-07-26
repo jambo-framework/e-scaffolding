@@ -172,29 +172,27 @@ public class SetFoldersPage extends WizardPage {
                 public void modifyText(ModifyEvent e) {
                     ValueStore.moduleName = txtModuleName.getText();
                       
-                    lblHbmPackage.setText("com." + ValueStore.projname + ".business." +
-                        txtModuleName.getText() + "." +
-                        ValueStore.baseClassName.toLowerCase()
-                        + "." 
-                        + "persistent");
-                    lblControlPackage.setText("com." + ValueStore.projname + ".business." +
-                            txtModuleName.getText() + "." +
-                            ValueStore.baseClassName.toLowerCase()
-                            + "." 
-                            + "control");
+                    lblHbmPackage.setText("com.ericsson." + ValueStore.projname + ".entity");
+//                    		 + txtModuleName.getText() + "." +
+//                        ValueStore.baseClassName.toLowerCase());
+                    lblControlPackage.setText("com.ericsson." + ValueStore.projname + ".controller");
+//                    		 +txtModuleName.getText() + "." +
+//                            ValueStore.baseClassName.toLowerCase()
+//                            + "." 
+//                            + "control");
                     
-                    lblModelPackage.setText("com." + ValueStore.projname + ".business." +
-                        txtModuleName.getText() + "." +
-                        ValueStore.baseClassName.toLowerCase()
-                        + "." 
-                        + "persistent");
+                    lblModelPackage.setText("com.ericsson." + ValueStore.projname + ".entity");
+//                        txtModuleName.getText() + "." +
+//                        ValueStore.baseClassName.toLowerCase()
+//                        + "." 
+//                        + "persistent");
                     
 //                    lblI18nPackage.setText("com." + ValueStore.projname + ".web." +
 //                    		txtModuleName.getText() + "." +
 //                    		ValueStore.baseClassName.toLowerCase());
-                    lblViewPackage.setText("com." + ValueStore.projname + ".web." +
-                            txtModuleName.getText() + "." +
-                            ValueStore.baseClassName.toLowerCase());
+                    lblViewPackage.setText("com.ericsson." + ValueStore.projname + ".web");// +
+//                            txtModuleName.getText() + "." +
+//                            ValueStore.baseClassName.toLowerCase());
                     setPageComplete(isComplete());
                 }
             });

@@ -4,7 +4,12 @@
  */
 $pkgName
 
-import com.jambo.jop.infrastructure.db.AbstractDAO;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>Title: $className</p>
@@ -14,7 +19,7 @@ import com.jambo.jop.infrastructure.db.AbstractDAO;
  * @author $author
  * @version 1.0
  */
-public class $className extends AbstractDAO {
+public class $className extends JpaRepository<Device, Integer> {
 
     /**
      * default constructor
@@ -22,4 +27,10 @@ public class $className extends AbstractDAO {
     public $className(){
         super($pojoClasses);
     }
+    
+    public $className findById(String id);
+    
+    public $className save($className obj);
+    
+    
 }

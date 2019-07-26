@@ -20,4 +20,5 @@ Bundle-ClassPath: lib/commons-beanutils.jar,
  lib/velocity-dep-1.5.jar,
  codegen.jar,
  lib/postgresql-9.4.1212.jar,
- lib/mysql-connector-java-5.1.6.jar
+ lib/mysql-connector-java-5.1.6.jar,
+ lib/commons_core.jar

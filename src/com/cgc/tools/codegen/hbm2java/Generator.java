@@ -24,7 +24,7 @@ import java.util.Map;
  */
 public class Generator {
     private Log log = LogFactory.getLog(Generator.class);
-    private String rendererClass = "com.jambo.tools.codegen.hbm2java.BasicRenderer";
+    private String rendererClass = "com.cgc.tools.codegen.hbm2java.BasicRenderer";
     private String baseDirName = "generated";
     private String packageName = null;
     private String suffix = StringHelper.EMPTY_STRING;

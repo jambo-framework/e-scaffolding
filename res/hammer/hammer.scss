@@ -1,0 +1,279 @@
+@import "../../assets/styles/mixins.scss";
+@import "../../assets/styles/reboot.scss";
+
+$prefix: #{$namespace}-hammer;
+$prefixBtn: $prefix-btn;
+$prefixCard: $prefix-card;
+$prefixDialog: $prefix-dialog;
+$prefixRadio: $prefix-radio;
+.#{$prefix}-hammer {
+  &-content {
+    padding: 32px 24px 24px;
+  }
+  &-intro {
+    display: flex;
+    padding-bottom: 24px;
+    &__title {
+      margin-left: 24px;
+      h3 {
+        margin: 0 0 8px;
+        font-size: 20px;
+        font-weight: 500;
+      }
+      &-paired {
+        margin-bottom: 4px;
+      }
+      h4 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: normal;
+        color: rgba(0, 0, 0, 0.38);
+        a {
+          font-size: 20px;
+          font-weight: 500;
+          color: #00bcd4;
+          text-decoration: none;
+        }
+      }
+    }
+    .#{$prefix}-ok__button {
+      position: absolute;
+      margin: 10px 0 10px 450px;
+    }
+    &__icon-paired {
+      width: 56px;
+      height: 56px;
+      font-size: 32px;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.87);
+    }
+    &__icon-unpaired {
+      width: 56px;
+      height: 56px;
+      font-size: 32px;
+      color: rgba(0, 0, 0, 0.26);
+      background-color: rgba(0, 0, 0, 0.12);
+    }
+    &__btn-explain {
+      position: absolute;
+      margin-top: 30px;
+      margin-left: 565px;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.38);
+    }
+  }
+  &__line {
+    height: 2px;
+    margin: 8px 0;
+    background-color: rgba(0, 0, 0, 0.12);
+  }
+  &-info {
+    &__header {
+      height: 64px;
+      margin-bottom: 9px;
+      padding: 0;
+      border-bottom: none;
+      .#{$prefixCard} {
+        &-header__title {
+          font-size: 20px;
+        }
+      }
+      .#{$prefixBtn} {
+        &--contained {
+          border-color: transparent;
+          background-color: transparent;
+        }
+      }
+    }
+    &__title {
+      padding: 14px 0 10px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    &__group {
+      padding-right: 7.4%;
+    }
+    &__group &-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 16px;
+      padding: 16px 24px 13px 0;
+      &__title {
+        margin-bottom: 2px;
+        line-height: 16px;
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.38);
+      }
+      &__value {}
+    }
+    &__footer-tip {
+      margin-top: -16px;
+      margin-bottom: 2px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.6);
+    }
+  } // edit page
+  &-edit {
+    .#{$prefix}-hammer-info__group .#{$prefix}-hammer-info-item {
+      padding: 0 24px 0 0;
+    }
+    &__button {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 32px;
+    }
+    &-save__button {
+      margin: 0 0 0 8px;
+    }
+    &__footer-tip {
+      margin-top: -8px;
+      margin-bottom: 2px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+  &-spinner {
+    position: fixed;
+    top: calc(50% - 50px);
+    left: calc(50% - 50px);
+  }
+  &-list {
+    // tr th:nth-child(2),
+    // tr th:nth-child(3),
+    // tr th:nth-child(6),
+    // tr th:nth-child(7),
+    // tr td:nth-child(2),
+    // tr td:nth-child(3),
+    // tr td:nth-child(6),
+    // tr td:nth-child(7){
+    //   width: 20%;
+    // }
+    // tr th:nth-child(4),
+    // tr th:nth-child(5),
+    // tr td:nth-child(4),
+    // tr td:nth-child(5){
+    //   width: 10%;
+    // }
+    // table{
+    // table-layout: fixed;
+    // }
+    // td{
+    //   white-space: nowrap;
+    //   overflow: hidden;
+    //   text-overflow: ellipsis;
+    // }
+    .#{$prefix}-td__time{
+      max-width: 130px;
+      text-align: right;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.#{$prefix} {
+  &-pair {
+    &-dialog {
+      width: 960px;
+      height: 533px;
+      max-height: 533px;
+      .#{$prefixDialog}__body {
+        padding: 0 0 10px;
+      }
+      .#{$prefixDialog}__footer {
+        margin-bottom: 18px;
+      }
+      .#{$prefixRadio}{
+        width: 24px;
+      }
+    }
+    &-searchbar {
+      height: 40px;
+      width: 288px;
+      display: flex;
+      margin: 10px 24px;
+      height: 40px;
+      border-radius: 2px;
+      background-color: #fff;
+      border: solid 2px rgba(0, 0, 0, 0.26);
+      box-shadow: none;
+      align-items: center;
+    }
+    &-table {
+      height: 325px;
+      overflow: auto;
+      border-top: solid 2px rgba(0, 0, 0, 0.13);
+      border-bottom: solid 1px rgba(0, 0, 0, 0.13);
+      // th:nth-child(1),
+      // tr > td:nth-child(1){
+      //   width: 37px;
+      //   padding-right: 0;
+      // }
+      // th:nth-child(2),
+      // tr > td:nth-child(2){
+      //   width: 107px;
+      // }
+      // th:nth-child(3),
+      // tr > td:nth-child(3),
+      // th:nth-child(6),
+      // tr > td:nth-child(6){
+      //   width: 214px;
+      // }
+      // th:nth-child(4),
+      // tr > td:nth-child(4),
+      // th:nth-child(5),
+      // tr > td:nth-child(5){
+      //   width: 160px;
+      // }
+      // th {
+      //   font-size: 12px;
+      //   color: rgba(0, 0, 0, 0.6);
+      // }
+      // td {
+      //   font-size: 14px;
+      //   color: rgba(0, 0, 0, 0.87);
+      //   overflow: hidden;
+      //   text-overflow: ellipsis;
+      // }
+    }
+    &-head-radio{
+      visibility: hidden;
+    }
+  }
+  &-ok__button {
+    width: 88px;
+    height: 36px;
+    line-height: 1;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #00bcd4;
+    &:hover {
+      background-color: lighten($color: #00bcd4, $amount: 10%);
+    }
+    &:disabled {
+      background-color: #eee;
+      &:hover {
+        background-color: #eee;
+      }
+    }
+  }
+  &-cancel__button {
+    width: 88px;
+    height: 36px;
+    line-height: 1;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #eee;
+    color: #4d4d4e;
+    &:hover {
+      background-color: #eee;
+    }
+    &:disabled {
+      background-color: #eee;
+      &:hover {
+        background-color: #eee;
+      }
+    }
+  }
+}

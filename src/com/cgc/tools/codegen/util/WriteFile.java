@@ -49,7 +49,8 @@ public class WriteFile {
 		File file = new File(dest);
 
 		if (file.exists()) {
-			throw new IllegalArgumentException("文件已存在") ;
+			//throw new IllegalArgumentException("file existed.") ;
+			file.delete();
 		}
 
 		FileOutputStream out = null;

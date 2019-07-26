@@ -23,6 +23,7 @@ import com.cgc.tools.codegen.generators.ContentPageGenerator;
 import com.cgc.tools.codegen.generators.DBQueryParamGenerator;
 import com.cgc.tools.codegen.generators.DaoGenerator;
 import com.cgc.tools.codegen.generators.EjbInterfaceGenerator;
+import com.cgc.tools.codegen.generators.EntryPageGenerator;
 import com.cgc.tools.codegen.generators.FormGenerator;
 import com.cgc.tools.codegen.generators.I18nGenerator;
 import com.cgc.tools.codegen.generators.ListPageGenerator;
@@ -147,7 +148,7 @@ public class CodegenNewWizard extends Wizard implements INewWizard {
 		mg.setSrcFolder(new File(ValueStore.srcFolder));
 		
 		mg.setHbmFileName(ValueStore.baseClassName + ".hbm.xml");		
-		mg.setPoClassName(ValueStore.baseClassName + "VO");
+		mg.setPoClassName(ValueStore.baseClassName + "Entity");
 		mg.setGenerator(hbmPage.getGenerator());
 		mg.setIdType(hbmPage.getIdType());
 		mg.setJavaTypes(hbmPage.isJavaTypes());
@@ -174,6 +175,9 @@ public class CodegenNewWizard extends Wizard implements INewWizard {
 		
 		TestGenerator testGen = new TestGenerator();
 
+		EntryPageGenerator entryGen = new EntryPageGenerator(); 
+
+		
 		ServiceGenerator serviceGen = new ServiceGenerator();
 		ServiceImplGenerator serviceImplGen = new ServiceImplGenerator();
 		try {
@@ -184,7 +188,8 @@ public class CodegenNewWizard extends Wizard implements INewWizard {
 			//BACKEND
 			if (ValueStore.genOrNot[Constants.BACKEND]) {
 				msGen.generate();
-				
+				boGen.generate();
+				paramGen.generate();
 			}
 			//dao
 //			if (ValueStore.genOrNot[Constants.DAO]) {
@@ -205,7 +210,9 @@ public class CodegenNewWizard extends Wizard implements INewWizard {
 			//action
 			if(ValueStore.genOrNot[Constants.WEB]){				
 //				actionGen.generate();
-//				formGen.generate();	
+//				formGen.generate();
+//				entryGen.generate(); //*.tsx
+			
 			}
 			//web“≥√Ê
 //			if(ValueStore.genOrNot[Constants.PAGE]){

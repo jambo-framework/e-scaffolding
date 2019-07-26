@@ -68,15 +68,15 @@ public abstract class BaseGenerator {
 	}
 
 	protected String getPojoClassName() {
-		return baseClassName + "VO";
+		return baseClassName + "";
 	}
 
 	protected String getDaoClassName() {
-		return baseClassName + "DAO";
+		return baseClassName + "Repository";
 	}
 
 	protected String getParamClassName() {
-		return baseClassName + "DBParam";
+		return baseClassName + "DeviceController";
 	}
 
 	protected String getFormClassName() {
@@ -88,7 +88,7 @@ public abstract class BaseGenerator {
 //	}
 
 	protected String geBoClassName() {
-		return baseClassName + "BO";
+		return baseClassName + "Service";
 	}
 
 	protected String getEjbInterfName() {
@@ -201,6 +201,10 @@ public abstract class BaseGenerator {
         context.put("date", new Date());
         context.put("author", ValueStore.author);
 
+        context.put("pojoFirstUpper", getBaseClassName()); 
+        context.put("pojoLowercase", getBaseClassName().toLowerCase());
+        context.put("pojoUppercase", getPojoClassName().toUpperCase());
+        
 //		context.put("ejbInterfName", getEjbInterfName()) ;
 //      context.put("delegatePkg", getDelegatePkg());
 //      context.put("dlgClassCla", getDlgClassName() + ".class");

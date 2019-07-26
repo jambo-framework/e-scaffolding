@@ -63,7 +63,7 @@ public class BasicRenderer extends AbstractRenderer {
         }
     
         // always implements Serializable
-        writer.print(" extends BaseVO implements Serializable");
+        writer.print(" extends BaseEntity implements Serializable");
         
     	// implement proxy, but NOT if the proxy is the class it self!
     	if ( 
@@ -460,7 +460,8 @@ public class BasicRenderer extends AbstractRenderer {
             	classMapping.getImports().add("org.apache.commons.lang.builder.EqualsBuilder");
             	classMapping.getImports().add("org.apache.commons.lang.builder.HashCodeBuilder");
             }
-            classMapping.getImports().add("com.jambo.jop.infrastructure.db.BaseVO");
+//            classMapping.getImports().add("com.cgc.jop.infrastructure.db.BaseVO");
+            classMapping.getImports().add("com.ericsson.cvc.entity.BaseEntity");
         
             for ( Iterator imports = classMapping.getImports().iterator(); imports.hasNext(); ) {
                 writer.println("import " + imports.next() + ";");

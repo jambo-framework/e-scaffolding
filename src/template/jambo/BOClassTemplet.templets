@@ -4,10 +4,14 @@
  */
 $pkgName
 
-import java.io.Serializable;
-import com.jambo.jop.infrastructure.control.AbstractBO;
-import com.jambo.jop.infrastructure.db.DAOFactory;
-import com.jambo.jop.infrastructure.db.DataPackage;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+
+import com.ericsson.cvc.dao.$classNameRepository;
+import com.ericsson.cvc.entity.${className};
 
 /**
  * <p>Title: $className </p>;
@@ -17,7 +21,9 @@ import com.jambo.jop.infrastructure.db.DataPackage;
  * @author $author
  * @version 1.0
  */
-public class $className extends AbstractBO {
+
+@Service
+public class $className  {
 
     @Override
     protected Class getDAOClasses() {
@@ -27,4 +33,35 @@ public class $className extends AbstractBO {
     public $daoClassName getDAO() throws Exception {
         return ($daoClassName)getBaseDAO();
     }
+    
+    @Autowired
+    private ${className}Repository ${pojoLowercase}Repository;
+
+    public ${className} find${className}ById(String id){
+
+        return ${pojoLowercase}Repository.findById(id);
+    }
+
+    //search data,return list type json
+    public List<${className}> findList(String vin){
+    	if(StringUtils.isEmpty(vin)) {
+    		return ${pojoLowercase}Repository.findAll();
+    	}
+        return ${pojoLowercase}Repository.findName(vin);
+    }
+
+    @Transactional(readOnly = false)
+    public void delete(${className} ${pojoLowercase}){
+    	${pojoLowercase}Repository.delete(${pojoLowercase});
+    }
+    @Transactional(readOnly = false)
+    public void save(${className} ${pojoLowercase}){
+    	${pojoLowercase}Repository.save(${pojoLowercase});
+    }
+    @Transactional(readOnly = false)
+    public void updateList(${className} ${pojoLowercase}){
+    	${className} d = this.find${className}ById(${pojoLowercase}.getId());
+    	BeanUtils.copyProperties(${pojoLowercase}, d);
+    	${pojoLowercase}Repository.save(${pojoLowercase});
+    }    
 }

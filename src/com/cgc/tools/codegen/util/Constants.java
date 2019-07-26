@@ -18,7 +18,7 @@ public interface Constants {
         };
     final String[] tableTypes = { "TABLE", "VIEW", "SYNONYM", "ALIAS" };
 //    String BaseDaoClass = "com.sunrise.boss.common.base.db.BaseDAO";
-    String BaseDaoClass = "com.jambo.jop.infrastructure.db.AbstractDAO";
+    String BaseDaoClass = "com.cgc.jop.infrastructure.db.AbstractDAO";
     
 	final String[] columnNames = { "name", "n", "nn", "l", "nm",
 			"e", "nl", "m", "ne", "in", "nin", "k", "nk" };
