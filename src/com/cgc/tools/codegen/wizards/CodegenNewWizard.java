@@ -4,6 +4,8 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.logging.Log;
@@ -211,7 +213,12 @@ public class CodegenNewWizard extends Wizard implements INewWizard {
 			if(ValueStore.genOrNot[Constants.WEB]){				
 //				actionGen.generate();
 //				formGen.generate();
-//				entryGen.generate(); //*.tsx
+				
+				Map<String, String> map = new HashMap<String, String>();
+				
+				map.put(entryGen.getClassName() + ".tsx", "EntryTemplet.templets");
+				
+				entryGen.generateBatch(map); //*.tsx
 			
 			}
 			//web“≥√Ê

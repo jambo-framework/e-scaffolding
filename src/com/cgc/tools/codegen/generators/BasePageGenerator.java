@@ -68,6 +68,7 @@ public abstract class BasePageGenerator {
         }
     }
 	
+	
 	protected VelocityContext getContext(){
 		VelocityContext context = new VelocityContext();
 		context.put("moduleName", ValueStore.moduleName) ;
@@ -103,7 +104,7 @@ public abstract class BasePageGenerator {
 		return baseClassName + "Action";
 	}
 
-	protected String getClassName() {
+	public String getClassName() {
 		return baseClassName;
 	}
 
