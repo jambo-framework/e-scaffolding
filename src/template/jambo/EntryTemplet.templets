@@ -7,25 +7,25 @@ import { message } from 'eds-react/lib/components/message';
 import messages from './message';
 import {
   prefixCls,
-  HammerListGetCount,
-  HammerListDataKey,
-  HammerSearchOptions,
-} from './hammer.constants';
-import { HammerHeader, HammerSummary, HammerList, HammerDelete } from './components';
-import { HammerSummaryData, PaginationData } from './actions/hammerList';
+  ${pojoFirstUpper}ListGetCount,
+  ${pojoFirstUpper}ListDataKey,
+  ${pojoFirstUpper}SearchOptions,
+} from './${pojoLowercase}.constants';
+import { ${pojoFirstUpper}Header, ${pojoFirstUpper}Summary, ${pojoFirstUpper}List, ${pojoFirstUpper}Delete } from './components';
+import { ${pojoFirstUpper}SummaryData, PaginationData } from './actions/${pojoLowercase}List';
 import { FormattedNumber } from '../../components/biz/formatted-number';
 
-require('./hammer.scss');
+require('./${pojoLowercase}.scss');
 
-const SummaryWrapper = HammerSummary;
-const ListWrapper = HammerList;
+const SummaryWrapper = ${pojoFirstUpper}Summary;
+const ListWrapper = ${pojoFirstUpper}List;
 
 const parse = val => {
   return typeof val === 'number' ? val + '' : ' ';
 };
 
 interface HeaderParams {
-  likeHammerIMEI?: string;
+  like${pojoFirstUpper}IMEI?: string;
   likeLicensePlate?: string;
   likeVin?: string;
   vendor?: string;
@@ -39,19 +39,19 @@ interface ListParams {
   sortByField: string;
 }
 
-export interface HammerProps extends EDS.BasicProps<any> {
+export interface ${pojoFirstUpper}Props extends EDS.BasicProps<any> {
   name?: string;
-  summary: HammerSummaryData;
-  hammerList: Array<any>;
+  summary: ${pojoFirstUpper}SummaryData;
+  ${pojoLowercase}List: Array<any>;
   pagination: PaginationData;
   listLoading: boolean;
   history?: any;
 }
 
-interface HammerState {
+interface ${pojoFirstUpper}State {
   deleteOpen?: boolean;
   removeIds?: Array<string>;
-  curHammerData: any;
+  cur${pojoFirstUpper}Data: any;
   clearSelectedKeys?: boolean;
   configurableAttributesData?: any;
   
@@ -59,7 +59,7 @@ interface HammerState {
 
 export const IntlContext: React.Context<FMS.ContextIntl> = React.createContext(null);
 
-class Hammer extends React.Component<HammerProps, HammerState> {
+class ${pojoFirstUpper} extends React.Component<${pojoFirstUpper}Props, ${pojoFirstUpper}State> {
   private listParams: ListParams;
   private headerParams: HeaderParams;
   private searchOptions: any;
@@ -70,11 +70,11 @@ class Hammer extends React.Component<HammerProps, HammerState> {
     if ('vrn' === sortField) {
       sortField = 'vehicle.vrn';
     } else if ('lastModified' === sortField) {
-      sortField = 'hammer.lastModified';
+      sortField = '${pojoLowercase}.lastModified';
     }
     let direction = 'DESC';
     this.listParams = {
-      count: HammerListGetCount,
+      count: ${pojoFirstUpper}ListGetCount,
       order: direction,
       sortByField: sortField
     };
@@ -82,7 +82,7 @@ class Hammer extends React.Component<HammerProps, HammerState> {
     this.searchOptions = { header: {}, others: {} };
     this.state = {
       deleteOpen: false,
-      curHammerData: null,
+      cur${pojoFirstUpper}Data: null,
       clearSelectedKeys: false,
     };
   }
@@ -93,8 +93,8 @@ class Hammer extends React.Component<HammerProps, HammerState> {
   }
 
   componentWillMount() {
-    storage.removeItem(HammerListDataKey);
-    this.searchOptions = storage.getSearchCriteria(HammerSearchOptions) || {
+    storage.removeItem(${pojoFirstUpper}ListDataKey);
+    this.searchOptions = storage.getSearchCriteria(${pojoFirstUpper}SearchOptions) || {
       header: {},
       others: {},
     };
@@ -110,16 +110,16 @@ class Hammer extends React.Component<HammerProps, HammerState> {
   }
 
   render(): JSX.Element {
-    const { summary, hammerList, listLoading, pagination, history, configurableAttributesData } = this.props;
+    const { summary, ${pojoLowercase}List, listLoading, pagination, history, configurableAttributesData } = this.props;
     const {
-      curHammerData,
+      cur${pojoFirstUpper}Data,
       deleteOpen,
       clearSelectedKeys,
     } = this.state;
     return (
       <div className={`fms-page ${prefixCls}`}>
-        <HammerHeader
-          reloadHammer={this.reloadHammer}
+        <${pojoFirstUpper}Header
+          reload${pojoFirstUpper}={this.reload${pojoFirstUpper}}
           className={`${prefixCls}__header`}
           defaultOptions={this.searchOptions.header}
           configurableAttributesData={configurableAttributesData}
@@ -131,7 +131,7 @@ class Hammer extends React.Component<HammerProps, HammerState> {
           />
           <ListWrapper
             listLoading={listLoading}
-            hammerList={hammerList}
+            ${pojoLowercase}List={${pojoLowercase}List}
             pagination={pagination}
             paginationSwitch={this.paginationSwitch}
             handleEdit={this.handleEdit}
@@ -141,8 +141,8 @@ class Hammer extends React.Component<HammerProps, HammerState> {
             history={history}
           />
         </div>
-        <HammerDelete
-          hammerData={curHammerData}
+        <${pojoFirstUpper}Delete
+          ${pojoLowercase}Data={cur${pojoFirstUpper}Data}
           open={deleteOpen}
           onOk={this.handleDelete}
           onCancel={this.handleCloseDelete}
@@ -152,8 +152,8 @@ class Hammer extends React.Component<HammerProps, HammerState> {
   }
 
   private handleDelete = () => {
-    const { curHammerData } = this.state;
-    this.props.deleteHammer(curHammerData.id).then(
+    const { cur${pojoFirstUpper}Data } = this.state;
+    this.props.delete${pojoFirstUpper}(cur${pojoFirstUpper}Data.id).then(
       () => {
         this.setState({ deleteOpen: false, clearSelectedKeys: true }, this.loadPage);
       },
@@ -163,12 +163,12 @@ class Hammer extends React.Component<HammerProps, HammerState> {
     );
   };
 
-  private handleOpenDelete = hammerData => {
+  private handleOpenDelete = ${pojoLowercase}Data => {
     if (this.state.deleteOpen) {
       return;
     }
     this.setState({
-      curHammerData: hammerData,
+      cur${pojoFirstUpper}Data: ${pojoLowercase}Data,
       deleteOpen: true,
       clearSelectedKeys: false,
     });
@@ -179,29 +179,29 @@ class Hammer extends React.Component<HammerProps, HammerState> {
   };
 
   private handleAdd = () => {
-    this.props.history.push(PATHS.ADD_HAMMER);
+    this.props.history.push(PATHS.ADD_${pojoUppercase});
   };
 
-  private handleView = hammerData => {
-    this.props.history.push(`${PATHS.HAMMER}/${hammerData.id}`);
+  private handleView = ${pojoLowercase}Data => {
+    this.props.history.push(#[[`${PATHS.]]#${pojoUppercase}}/#[[${]]#${pojoLowercase}Data.id}`);
   };
 
-  private handleEdit = hammerData => {
-    this.props.history.push(`${PATHS.ADD_HAMMER}?id=${hammerData.id}`);
+  private handleEdit = ${pojoLowercase}Data => {
+    this.props.history.push(#[[`${PATHS.ADD_]]#${pojoUppercase}}?id=#[[${]]#${pojoLowercase}Data.id}`);
   };
 
   private loadPage = (isPair = false) => {
-    const { getHammerList } = this.props;
-    this.listParams.count = HammerListGetCount;
+    const { get${pojoFirstUpper}List } = this.props;
+    this.listParams.count = ${pojoFirstUpper}ListGetCount;
     this.setState({
-      curHammerData: null,
+      cur${pojoFirstUpper}Data: null,
     });
 
-    storage.setSearchCriteria(HammerSearchOptions, {
+    storage.setSearchCriteria(${pojoFirstUpper}SearchOptions, {
       header: this.headerParams,
       others: this.listParams,
     });
-    getHammerList(Object.assign({}, this.listParams, this.headerParams), 1, (msg = '') => {
+    get${pojoFirstUpper}List(Object.assign({}, this.listParams, this.headerParams), 1, (msg = '') => {
       message.notice(msg, { style: { position: 'fixed', bottom: '0px' } });
     });
   };
@@ -216,7 +216,7 @@ class Hammer extends React.Component<HammerProps, HammerState> {
     );
   };
 
-  private reloadHammer = filterConditions => {
+  private reload${pojoFirstUpper} = filterConditions => {
     this.headerParams = { ...filterConditions };
     this.setState({ clearSelectedKeys: true }, this.loadPage);
   };
@@ -227,16 +227,16 @@ class Hammer extends React.Component<HammerProps, HammerState> {
     }
     return [
       {
-        name: <FormattedMessage {...messages.summaryTotalHammer} />,
-        value: <FormattedNumber value={summary.totalHammer} />,
+        name: <FormattedMessage {...messages.summaryTotal${pojoFirstUpper}} />,
+        value: <FormattedNumber value={summary.total${pojoFirstUpper}} />,
       },
     ];
   };
 }
 
-(Hammer as React.ComponentType<HammerProps>).contextTypes = {
+(${pojoFirstUpper} as React.ComponentType<${pojoFirstUpper}Props>).contextTypes = {
   intl: PropTypes.object,
 };
 
-export default Hammer;
+export default ${pojoFirstUpper};
 

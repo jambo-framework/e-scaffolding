@@ -17,6 +17,8 @@ import com.cgc.tools.codegen.util.ValueStore;
 
 public class ProductPage extends WizardPage {
 	private static final Log log = LogFactory.getLog(ProductPage.class);
+	private boolean isPrevious = true ; //是否能点击上一页
+
 	private boolean createFlag = false ;
 	private Button reactorTypes;
 	private Button uvprofileTypes;
@@ -58,5 +60,16 @@ public class ProductPage extends WizardPage {
 	}
 	public void createReviewArea(Composite composite){
 		
+	}
+	public void setPreviousAble(boolean flag) {
+		this.isPrevious = flag ;
+	}
+	
+	public IWizardPage getPreviousPage(){
+		if (isPrevious){
+			return super.getPreviousPage() ;
+		} else {
+			return null ;
+		}
 	}
 }

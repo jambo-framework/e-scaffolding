@@ -66,13 +66,13 @@ public class EntryPageGenerator extends BasePageGenerator {
         	fileName = entry.getKey();
         	file = new File(dir, fileName);
             log.debug("save file to: " + file.getAbsolutePath());
-            templateName = "template/" + entry.getValue();
+            templateName = entry.getValue();
 
-            StringBuffer source = new StringBuffer(TemplatesUtils.getInstence().getString("List",fileName)) ;
-    		WriteFile.write(templateName , source) ;
+            StringBuffer source = new StringBuffer(TemplatesUtils.getInstence().getString(fileName,templateName)) ;
+    		WriteFile.write("template/" + templateName , source) ;
 
         	try {
-		        template = Velocity.getTemplate(templateName);
+		        template = Velocity.getTemplate("template/" + templateName);
 				writer = new PrintWriter(new FileOutputStream(file));
 		        if ( template != null){
 		            template.merge(context, writer);
@@ -80,6 +80,7 @@ public class EntryPageGenerator extends BasePageGenerator {
 		        writer.flush() ;
 	        }catch (Exception e){
 	        	log.error(e);
+	        	e.printStackTrace();
 	        } finally{
 	            if (writer != null) writer.close();
 	    		File f = new File(templateName) ;

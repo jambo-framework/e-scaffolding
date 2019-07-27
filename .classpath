@@ -2,6 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-lang3-3.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/slf4j-api-1.7.16.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/velocity-engine-core-2.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons_core.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/mysql-connector-java-5.1.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/postgresql-9.4.1212.jar"/>

@@ -27,7 +27,9 @@ public class LastPage extends WizardPage {
 		setControl(pp);
 	}
 	public IWizardPage getNextPage() {
-		SelTablePage page = (SelTablePage) getWizard().getStartingPage() ;
+//		SelTablePage page = (SelTablePage) getWizard().getStartingPage() ;
+		ProductPage page = (ProductPage) getWizard().getStartingPage() ;
+
 		if (createFlag){
 			CodegenNewWizard wizard = (CodegenNewWizard)getWizard() ;
 			wizard.setCloseConnFlag(false) ;
@@ -49,4 +51,5 @@ public class LastPage extends WizardPage {
 	public void createReviewArea(Composite composite){
 		
 	}
+
 }
