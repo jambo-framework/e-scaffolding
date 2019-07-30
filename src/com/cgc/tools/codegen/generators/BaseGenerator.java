@@ -123,52 +123,52 @@ public abstract class BaseGenerator {
 	}
 
 	protected String getModelPkg() {
-		return "com." + ValueStore.projname + ".business." 
-		+ ValueStore.moduleName 
+		return "com.ericsson." + ValueStore.projname //+ ".business." 
+//		+ ValueStore.moduleName 
 		+"." 
 		+ baseClassName.toLowerCase()
 		+ "." 
-	    + "persistent";
+	    + "dao";
 	}
 
 	protected String getControlPkg() {
-		return "com." + ValueStore.projname + ".business." 
-		+ ValueStore.moduleName 
+		return "com.ericsson." + ValueStore.projname //+ ".business." 
+//		+ ValueStore.moduleName 
 		+"." 
 		+ baseClassName.toLowerCase()
 		+ "." 
-	    + "control";
+	    + "controller";
 	}
 	
 	protected String getServicePkg() {
-		return "com." + ValueStore.projname + "." 
-		+ ValueStore.moduleName 
-		+"." 
+		return "com.ericsson." + ValueStore.projname + "." 
+//		+ ValueStore.moduleName 
+//		+"." 
 		+ baseClassName.toLowerCase()
 		+ ".service";
 	}
 
 	protected String getServiceImplPkg() {
-		return "com." + ValueStore.projname + "." 
-		+ ValueStore.moduleName 
-		+"." 
+		return "com.ericsson." + ValueStore.projname + "." 
+//		+ ValueStore.moduleName 
+//		+"." 
 		+ baseClassName.toLowerCase()
 		+ ".business";
 	}
 
 	protected String getViewPkg() {
-		return "com." + ValueStore.projname + ".web." + ValueStore.moduleName + "."
+		return "com.ericsson." + ValueStore.projname + ".web." + ValueStore.moduleName + "."
 		+ baseClassName.toLowerCase();
 	}
 
 	protected String getI18nPkg() {
-		return "com." + ValueStore.projname + ".resource.i18n." + ValueStore.moduleName;
+		return "com.ericsson." + ValueStore.projname + ".resource.i18n." + ValueStore.moduleName;
 	}
 	
 	protected String getDataFile(){
 		String projname = ValueStore.projname.replaceAll(".", "/");
 		
-		return "com/" + projname + "/business/" +  ValueStore.moduleName + "/data/" + baseClassName + ".data";
+		return "com/ericsson/" + projname + "/business/" +  ValueStore.moduleName + "/data/" + baseClassName + ".data";
 	}
 	
     public VelocityContext getContext() {

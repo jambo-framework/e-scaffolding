@@ -17,7 +17,7 @@ public class DBQueryParamGenerator extends BaseGenerator {
     public DBQueryParamGenerator(FieldList fieldList) {
         this.className = getParamClassName();
         this.srcFolder = ValueStore.srcFolder;
-        this.pkgName = getModelPkg();
+        this.pkgName = getControlPkg();
     	helper = new FieldsHelper(fieldList.getFields());
     }
 

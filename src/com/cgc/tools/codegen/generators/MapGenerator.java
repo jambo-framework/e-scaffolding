@@ -548,9 +548,9 @@ public class MapGenerator {
 	 * @return Value of property voPackageName.
 	 */
 	public java.lang.String getDaoPkg() {
-		return daoPkg != null ? daoPkg : "com." + ValueStore.projname
-				+ ".business." + ValueStore.moduleName + "."
-				+ ValueStore.baseClassName.toLowerCase() + "." + "persistent";
+		return daoPkg != null ? daoPkg : "com.ericsson." + ValueStore.projname
+				+ "." //+ ValueStore.moduleName + "."
+				+ ValueStore.baseClassName.toLowerCase() + "." + "entity";
 	}
 
 	/**

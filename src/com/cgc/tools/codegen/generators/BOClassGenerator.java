@@ -14,7 +14,7 @@ public class BOClassGenerator extends BaseGenerator {
     public BOClassGenerator() {
         this.className = geBoClassName();
         this.srcFolder = ValueStore.srcFolder;
-        this.pkgName = getControlPkg();
+        this.pkgName = getServicePkg();
     }
 
 //	public VelocityContext getContext() {
