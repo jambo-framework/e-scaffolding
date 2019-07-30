@@ -10,27 +10,23 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import com.ericsson.cvc.entity.${baseClassName}Entity;
 
 /**
  * <p>Title: $className</p>
  * <p>Description: Data Access Object</p>
  * <p>Copyright: Copyright (c) 2006</p>
- * <p>Company: jambo-framework Tech Ltd.</p>
+ * <p>Company: ericsson.</p>
  * @author $author
  * @version 1.0
  */
-public class $className extends JpaRepository<Device, Integer> {
+public interface $className extends JpaRepository<${baseClassName}Entity, Integer> {
 
-    /**
-     * default constructor
-     */
-    public $className(){
-        super($pojoClasses);
-    }
+
     
-    public $className findById(String id);
+    public ${baseClassName}Entity findById(String id);
     
-    public $className save($className obj);
+    public ${baseClassName}Entity save(${baseClassName}Entity obj);
     
     
 }

@@ -76,7 +76,7 @@ public abstract class BaseGenerator {
 	}
 
 	protected String getParamClassName() {
-		return baseClassName + "DeviceController";
+		return baseClassName + "Controller";
 	}
 
 	protected String getFormClassName() {

@@ -4,64 +4,35 @@
  */
 $pkgName
 
+import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import com.ericsson.cvc.dao.$classNameRepository;
-import com.ericsson.cvc.entity.${className};
+import com.ericsson.cvc.dao.${baseClassName}Repository;
+import com.ericsson.cvc.entity.${baseClassName}Entity;
 
 /**
  * <p>Title: $className </p>;
  * <p>Description: </p>
  * <p>Copyright: Copyright (c) 2006</p>
- * <p>Company: jambo-framework Tech Ltd.</p>
+ * <p>Company: ericsson.</p>
  * @author $author
  * @version 1.0
  */
 
 @Service
 public class $className  {
-
-    @Override
-    protected Class getDAOClasses() {
-        return (${daoClassName}.class);
-    }
-
-    public $daoClassName getDAO() throws Exception {
-        return ($daoClassName)getBaseDAO();
-    }
-    
     @Autowired
-    private ${className}Repository ${pojoLowercase}Repository;
+    private ${baseClassName}Repository ${pojoLowercase}Repository;
 
-    public ${className} find${className}ById(String id){
-
-        return ${pojoLowercase}Repository.findById(id);
-    }
-
-    //search data,return list type json
-    public List<${className}> findList(String vin){
-    	if(StringUtils.isEmpty(vin)) {
-    		return ${pojoLowercase}Repository.findAll();
-    	}
-        return ${pojoLowercase}Repository.findName(vin);
-    }
-
-    @Transactional(readOnly = false)
-    public void delete(${className} ${pojoLowercase}){
-    	${pojoLowercase}Repository.delete(${pojoLowercase});
+    public List<${baseClassName}Entity> findAll(){
+        return ${pojoLowercase}Repository.findAll();
     }
     @Transactional(readOnly = false)
-    public void save(${className} ${pojoLowercase}){
+    public void save(${baseClassName}Entity ${pojoLowercase}){
     	${pojoLowercase}Repository.save(${pojoLowercase});
     }
-    @Transactional(readOnly = false)
-    public void updateList(${className} ${pojoLowercase}){
-    	${className} d = this.find${className}ById(${pojoLowercase}.getId());
-    	BeanUtils.copyProperties(${pojoLowercase}, d);
-    	${pojoLowercase}Repository.save(${pojoLowercase});
-    }    
 }

@@ -217,6 +217,9 @@ public class CodegenNewWizard extends Wizard implements INewWizard {
 				Map<String, String> map = new HashMap<String, String>();
 				
 				map.put(entryGen.getClassName() + ".tsx", "EntryTemplet.templets");
+				map.put(entryGen.getClassName() + ".tsx", "EntryTemplet.templets");
+				map.put(entryGen.getClassName() + ".tsx", "EntryTemplet.templets");
+				map.put(entryGen.getClassName() + ".tsx", "EntryTemplet.templets");
 				
 				entryGen.generateBatch(map); //*.tsx
 			
