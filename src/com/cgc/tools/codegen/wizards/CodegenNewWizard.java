@@ -127,7 +127,18 @@ public class CodegenNewWizard extends Wizard implements INewWizard {
 	}
 
 	public boolean performFinish() {
-		try{Velocity.init() ;}catch(Exception e){}
+		try{
+			//compatible for 1.x
+//			Velocity.setProperty("introspector.conversion_handler.class", "none"); 
+//			Velocity.setProperty("parser.space_gobbling", "bc");
+//			Velocity.setProperty("directive.if.empty_check ", "false");
+//			Velocity.setProperty("parser.allow_hyphen_in_identifiers", "true");
+//			Velocity.setProperty("velocimacro.arguments.preserve_literals", "true");
+
+			Velocity.init();
+			
+		}catch(Exception e){
+		}
 		IPreferenceStore store = CodegenPlugin.getDefault()
 		.getPreferenceStore();
 		// TODO 移动模板文件,检查模板文件

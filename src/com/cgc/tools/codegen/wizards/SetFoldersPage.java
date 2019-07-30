@@ -225,6 +225,7 @@ public class SetFoldersPage extends WizardPage {
     }
 
     private boolean isComplete() {
+    	/*
         if (txtModuleName.getText().trim().equals("")) {
             return false;
         }
@@ -241,7 +242,7 @@ public class SetFoldersPage extends WizardPage {
         if (txtWebFolder.getEnabled() &&
         		txtWebFolder.getText().trim().equals("")) {
         	return false;
-        }
+        } */
         return true;
     }
 

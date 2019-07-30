@@ -93,6 +93,10 @@ public abstract class BasePageGenerator {
         context.put("ELEnd", "}") ;
         context.put("EEStart", "#{") ;
 
+        context.put("pojoFirstUpper", ValueStore.baseClassName); 
+        context.put("pojoLowercase", ValueStore.baseClassName.toLowerCase());
+        context.put("pojoUppercase", ValueStore.baseClassName.toUpperCase());
+        
     	return context ;
 	}
 	
