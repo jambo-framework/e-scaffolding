@@ -43,6 +43,7 @@ import com.cgc.tools.codegen.util.ValueStore;
 
 /**
  * 生成 hibernate的pojo与hbm
+ * 
  * @author jinbo
  */
 public class MapGenerator {
@@ -68,7 +69,7 @@ public class MapGenerator {
 	private String baseClass;
 	private org.jdom.input.DOMBuilder jdomBuilder;
 	private final boolean singleMapFile = true;
-	//2013-4-28 jinbo 保存字段列表,在写VO时读取注释内容
+	// 2013-4-28 jinbo 保存字段列表,在写VO时读取注释内容
 	List columnList = null;
 
 	/** Creates a new instance of SchemaExport */
@@ -91,11 +92,12 @@ public class MapGenerator {
 		Document d = getMap(c);
 		writeMapping(d);
 		generateCode(d);
-		
-		//2015.3.25 生成POJO的注解
-		if (ValueStore.isAnnotation){
-			GeneratorAnnotation AnnoGen = new GeneratorAnnotation(); 
-			AnnoGen.generateAnnotation(d, getSrcFolder(), getHbmPkg(), this.getPoClassName());
+
+		// 2015.3.25 生成POJO的注解
+		if (ValueStore.isAnnotation) {
+			GeneratorAnnotation AnnoGen = new GeneratorAnnotation();
+			AnnoGen.generateAnnotation(d, getSrcFolder(), getHbmPkg(),
+					this.getPoClassName());
 		}
 	}
 
@@ -142,7 +144,7 @@ public class MapGenerator {
 		// generate source files
 		Generator g = new Generator();
 		g.setBaseDirName(getSrcFolder().getAbsolutePath());
-		//2013-4-28 jinbo 为了不影响原来的代码,只好把字段列表这样一路传进去
+		// 2013-4-28 jinbo 为了不影响原来的代码,只好把字段列表这样一路传进去
 		g.columnList = this.columnList;
 		g.generate(map);
 	}
@@ -291,9 +293,9 @@ public class MapGenerator {
 		List columns = JDBCUtil.getTableColumns(c, getCatalog(),
 				getSchemaPattern(), tableName);
 
-		//2013-4-28 jinbo 保存字段列表,在写VO时读取注释内容
+		// 2013-4-28 jinbo 保存字段列表,在写VO时读取注释内容
 		this.columnList = columns;
-		
+
 		if (pkColumns.size() == 1) {
 			addId(classElement, (JDBCUtil.Column) pkColumns.iterator().next());
 		} else if (pkColumns.size() > 1) {
@@ -549,8 +551,9 @@ public class MapGenerator {
 	 */
 	public java.lang.String getDaoPkg() {
 		return daoPkg != null ? daoPkg : "com.ericsson." + ValueStore.projname
-				+ "." //+ ValueStore.moduleName + "."
-				+ ValueStore.baseClassName.toLowerCase() + "." + "entity";
+				+ "." // + ValueStore.moduleName + "."
+						// ValueStore.baseClassName.toLowerCase() + "." +
+				+ "entity";
 	}
 
 	/**
@@ -766,4 +769,3 @@ public class MapGenerator {
 		this.hbmFileName = hbmFileName;
 	}
 }
-

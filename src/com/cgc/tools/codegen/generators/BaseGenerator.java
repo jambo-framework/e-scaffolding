@@ -126,8 +126,8 @@ public abstract class BaseGenerator {
 		return "com.ericsson." + ValueStore.projname //+ ".business." 
 //		+ ValueStore.moduleName 
 		+"." 
-		+ baseClassName.toLowerCase()
-		+ "." 
+//		+ baseClassName.toLowerCase()
+//		+ "." 
 	    + "dao";
 	}
 
@@ -135,16 +135,16 @@ public abstract class BaseGenerator {
 		return "com.ericsson." + ValueStore.projname //+ ".business." 
 //		+ ValueStore.moduleName 
 		+"." 
-		+ baseClassName.toLowerCase()
-		+ "." 
+//		+ baseClassName.toLowerCase()
+//		+ "." 
 	    + "controller";
 	}
 	
 	protected String getServicePkg() {
-		return "com.ericsson." + ValueStore.projname + "." 
+		return "com.ericsson." + ValueStore.projname //+ "." 
 //		+ ValueStore.moduleName 
 //		+"." 
-		+ baseClassName.toLowerCase()
+//		+ baseClassName.toLowerCase()
 		+ ".service";
 	}
 
