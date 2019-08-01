@@ -1,0 +1,38 @@
+// ACTION TYPES
+export const ${pojoUppercase}_SUMMARY = '@${pojoLowercase}/SUMMARY';
+export const ${pojoUppercase}_LIST = '@${pojoLowercase}/LIST';
+export const PAGINATION = '@${pojoLowercase}/PAGINATION';
+
+// CACHE KEY
+export const ${pojoFirstUpper}ListDataKey = 'manage${pojoFirstUpper}';
+export const ${pojoFirstUpper}ListGetCount = 20;
+export const ${pojoFirstUpper}ListShowCount = 10;
+export const ${pojoFirstUpper}SearchOptions = '${pojoLowercase}SearchOptions';
+
+// FILTER KEY
+export const ${pojoFirstUpper}IMEIKey = 'ivdIds';
+export const LicensePlateKey = 'vrns';
+export const VinKey = 'vins';
+export const VendorKey = 'manufacturers';
+export const StatusKey = 'status';
+export const OrgKey = 'enterpriseIds';
+
+// FILTER DATASOURCE
+export const vendorDataSource = [
+  { text: 'ACTIA', value: 'ACTIA' },
+  { text: 'CNLAUNCH', value: 'CNLAUNCH' }
+];
+export const statusDataSource = [
+  { text: 'NEW', value: 'NEW' },
+  { text: 'ACTIVE', value: 'ACTIVE' }
+];
+
+export const ${pojoUppercase}_DETAIL = '@${pojoLowercase}/DETAIL';
+
+export const EDIT_${pojoUppercase} = '@${pojoLowercase}/EDIT';
+
+export const ${pojoUppercase}_PAIRED = '@${pojoLowercase}/PAIRED';
+export const ${pojoUppercase}_UNPAIRED = '@${pojoLowercase}/UNPAIRED';
+
+export const prefixCls = 'fms-${pojoLowercase}';
+export const ${pojoLowercase}PrefixCls = 'fms-${pojoLowercase}-${pojoLowercase}';

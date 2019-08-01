@@ -90,7 +90,7 @@ public class MapGenerator {
 	public void generate(Connection c) throws IOException, SQLException,
 			Exception {
 		Document d = getMap(c);
-		writeMapping(d);
+//		writeMapping(d);
 		generateCode(d);
 
 		// 2015.3.25 生成POJO的注解

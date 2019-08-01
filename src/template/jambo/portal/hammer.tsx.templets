@@ -1,0 +1,241 @@
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+import { PATHS } from '../../common';
+import { storage } from '../../services';
+import { message } from 'eds-react/lib/components/message';
+import messages from './message';
+import {
+  prefixCls,
+  ${pojoFirstUpper}ListGetCount,
+  ${pojoFirstUpper}ListDataKey,
+  ${pojoFirstUpper}SearchOptions,
+} from './${pojoLowercase}.constants';
+import { ${pojoFirstUpper}Header, ${pojoFirstUpper}Summary, ${pojoFirstUpper}List, ${pojoFirstUpper}Delete } from './components';
+import { ${pojoFirstUpper}SummaryData, PaginationData } from './actions/${pojoLowercase}List';
+import { FormattedNumber } from '../../components/biz/formatted-number';
+
+require('./${pojoLowercase}.scss');
+
+const SummaryWrapper = ${pojoFirstUpper}Summary;
+const ListWrapper = ${pojoFirstUpper}List;
+
+const parse = val => {
+  return typeof val === 'number' ? val + '' : ' ';
+};
+
+interface HeaderParams {
+  like${pojoFirstUpper}IMEI?: string;
+  likeLicensePlate?: string;
+  likeVin?: string;
+  vendor?: string;
+  status?: string;
+  opEnIds?: string;
+}
+
+interface ListParams {
+  count: number;
+  order: string;
+  sortByField: string;
+}
+
+export interface ${pojoFirstUpper}Props extends EDS.BasicProps<any> {
+  name?: string;
+  summary: ${pojoFirstUpper}SummaryData;
+  ${pojoLowercase}List: Array<any>;
+  pagination: PaginationData;
+  listLoading: boolean;
+  history?: any;
+}
+
+interface ${pojoFirstUpper}State {
+  deleteOpen?: boolean;
+  removeIds?: Array<string>;
+  cur${pojoFirstUpper}Data: any;
+  clearSelectedKeys?: boolean;
+  configurableAttributesData?: any;
+  
+}
+
+export const IntlContext: React.Context<FMS.ContextIntl> = React.createContext(null);
+
+class ${pojoFirstUpper} extends React.Component<${pojoFirstUpper}Props, ${pojoFirstUpper}State> {
+  private listParams: ListParams;
+  private headerParams: HeaderParams;
+  private searchOptions: any;
+
+  constructor(props) {
+    super(props);
+    let sortField = 'lastModified';
+    if ('vrn' === sortField) {
+      sortField = 'vehicle.vrn';
+    } else if ('lastModified' === sortField) {
+      sortField = '${pojoLowercase}.lastModified';
+    }
+    let direction = 'DESC';
+    this.listParams = {
+      count: ${pojoFirstUpper}ListGetCount,
+      order: direction,
+      sortByField: sortField
+    };
+    this.headerParams = {};
+    this.searchOptions = { header: {}, others: {} };
+    this.state = {
+      deleteOpen: false,
+      cur${pojoFirstUpper}Data: null,
+      clearSelectedKeys: false,
+    };
+  }
+
+  componentDidMount() {
+    this.headerParams = { ...this.searchOptions.header };
+    this.loadPage();
+  }
+
+  componentWillMount() {
+    storage.removeItem(${pojoFirstUpper}ListDataKey);
+    this.searchOptions = storage.getSearchCriteria(${pojoFirstUpper}SearchOptions) || {
+      header: {},
+      others: {},
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { clearSelectedKeys } = this.state;
+    if (clearSelectedKeys) {
+      this.setState({
+        clearSelectedKeys: false
+      });
+    }
+  }
+
+  render(): JSX.Element {
+    const { summary, ${pojoLowercase}List, listLoading, pagination, history, configurableAttributesData } = this.props;
+    const {
+      cur${pojoFirstUpper}Data,
+      deleteOpen,
+      clearSelectedKeys,
+    } = this.state;
+    return (
+      <div className={`fms-page ${prefixCls}`}>
+        <${pojoFirstUpper}Header
+          reload${pojoFirstUpper}={this.reload${pojoFirstUpper}}
+          className={`${prefixCls}__header`}
+          defaultOptions={this.searchOptions.header}
+          configurableAttributesData={configurableAttributesData}
+        />
+        <div className={`${prefixCls}__container fms-content`}>
+          <SummaryWrapper
+            title={this.context.intl.formatMessage(messages.summaryTitle)}
+            columns={this.getSummaryColumns(summary)}
+          />
+          <ListWrapper
+            listLoading={listLoading}
+            ${pojoLowercase}List={${pojoLowercase}List}
+            pagination={pagination}
+            paginationSwitch={this.paginationSwitch}
+            handleEdit={this.handleEdit}
+            handleDelete={this.handleOpenDelete}
+            handleView={this.handleView}
+            handleAdd={this.handleAdd}
+            history={history}
+          />
+        </div>
+        <${pojoFirstUpper}Delete
+          ${pojoLowercase}Data={cur${pojoFirstUpper}Data}
+          open={deleteOpen}
+          onOk={this.handleDelete}
+          onCancel={this.handleCloseDelete}
+        />
+      </div>
+    );
+  }
+
+  private handleDelete = () => {
+    const { cur${pojoFirstUpper}Data } = this.state;
+    this.props.delete${pojoFirstUpper}(cur${pojoFirstUpper}Data.id).then(
+      () => {
+        this.setState({ deleteOpen: false, clearSelectedKeys: true }, this.loadPage);
+      },
+      (msg = '') => {
+        message.notice(msg, { style: { position: 'fixed', bottom: '0px' } });
+      },
+    );
+  };
+
+  private handleOpenDelete = ${pojoLowercase}Data => {
+    if (this.state.deleteOpen) {
+      return;
+    }
+    this.setState({
+      cur${pojoFirstUpper}Data: ${pojoLowercase}Data,
+      deleteOpen: true,
+      clearSelectedKeys: false,
+    });
+  };
+
+  private handleCloseDelete = () => {
+    this.setState({ deleteOpen: false });
+  };
+
+  private handleAdd = () => {
+    this.props.history.push(PATHS.ADD_${pojoUppercase});
+  };
+
+  private handleView = ${pojoLowercase}Data => {
+    this.props.history.push(#[[`${PATHS.]]#${pojoUppercase}}/#[[${]]#${pojoLowercase}Data.id}`);
+  };
+
+  private handleEdit = ${pojoLowercase}Data => {
+    this.props.history.push(#[[`${PATHS.ADD_]]#${pojoUppercase}}?id=#[[${]]#${pojoLowercase}Data.id}`);
+  };
+
+  private loadPage = (isPair = false) => {
+    const { get${pojoFirstUpper}List } = this.props;
+    this.listParams.count = ${pojoFirstUpper}ListGetCount;
+    this.setState({
+      cur${pojoFirstUpper}Data: null,
+    });
+
+    storage.setSearchCriteria(${pojoFirstUpper}SearchOptions, {
+      header: this.headerParams,
+      others: this.listParams,
+    });
+    get${pojoFirstUpper}List(Object.assign({}, this.listParams, this.headerParams), 1, (msg = '') => {
+      message.notice(msg, { style: { position: 'fixed', bottom: '0px' } });
+    });
+  };
+
+  private paginationSwitch = (pageIndex: number, pageSize: number): void => {
+    this.props.paginationSwitch(
+      Object.assign({}, this.listParams, this.headerParams),
+      pageIndex,
+      (msg = '') => {
+        message.notice(msg, { style: { position: 'fixed', bottom: '0px' } });
+      },
+    );
+  };
+
+  private reload${pojoFirstUpper} = filterConditions => {
+    this.headerParams = { ...filterConditions };
+    this.setState({ clearSelectedKeys: true }, this.loadPage);
+  };
+
+  private getSummaryColumns = summary => {
+    if (!summary) {
+      return [];
+    }
+    return [
+      {
+        name: <FormattedMessage {...messages.summaryTotal${pojoFirstUpper}} />,
+        value: <FormattedNumber value={summary.total${pojoFirstUpper}} />,
+      },
+    ];
+  };
+}
+
+(${pojoFirstUpper} as React.ComponentType<${pojoFirstUpper}Props>).contextTypes = {
+  intl: PropTypes.object,
+};
+
+export default ${pojoFirstUpper};

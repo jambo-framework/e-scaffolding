@@ -1,0 +1,74 @@
+import * as React from 'react';
+import * as classNames from 'classnames';
+
+import { Avatar } from 'eds-react/lib/components/avatar';
+import { Button } from 'eds-react/lib/components/button';
+
+import { ${pojoLowercase}PrefixCls, prefixCls as commonCls } from '../${pojoLowercase}.constants';
+
+interface ${pojoFirstUpper}IntroProps extends EDS.BasicProps<React.HtmlHTMLAttributes<HTMLDivElement>, 'title'> {
+  icon: React.ReactNode;
+  title: React.ReactNode;
+  subTitle?: React.ReactNode;
+  btnText?: React.ReactNode;
+  btnExplain?: React.ReactNode;
+  className?: string;
+  avatarClassName?: string;
+  btnDisabled?: boolean;
+  btnClick?: (data: any) => void;
+  btnShow?: boolean;
+}
+
+const ${pojoFirstUpper}Intro: React.StatelessComponent<${pojoFirstUpper}IntroProps> = props => {
+  const {
+    icon,
+    title,
+    subTitle,
+    btnExplain,
+    prefixCls,
+    className,
+    avatarClassName,
+    btnShow,
+    ...others
+  } = props;
+
+  const classes = classNames(className, prefixCls);
+
+  const renderBtn = () => {
+    const {
+      btnText,
+      btnDisabled,
+      btnClick,
+    } = props;
+
+    return (
+      <Button
+        type="text"
+        className={`${commonCls}-ok__button`}
+        disabled={btnDisabled}
+        onClick={btnClick}
+        children={btnText}
+      />
+    );
+  };
+
+  const intro: JSX.Element = (
+    <div className={classes}>
+      <Avatar className={avatarClassName}>{icon}</Avatar>
+      <div className={`${prefixCls}__title`}>
+        <h3>{title}</h3>
+        <h4>{subTitle}</h4>
+      </div>
+      {btnShow === false ? null : renderBtn()}
+      <div className={`${prefixCls}__btn-explain`}>{btnExplain}</div>
+    </div>
+  );
+
+  return intro;
+};
+
+${pojoFirstUpper}Intro.defaultProps = {
+  prefixCls: `${${pojoLowercase}PrefixCls}-intro`,
+};
+
+export default ${pojoFirstUpper}Intro;

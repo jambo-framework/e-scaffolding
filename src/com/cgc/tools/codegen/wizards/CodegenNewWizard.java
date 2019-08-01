@@ -4,6 +4,7 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -24,7 +25,6 @@ import com.cgc.tools.codegen.generators.BOClassGenerator;
 import com.cgc.tools.codegen.generators.ContentPageGenerator;
 import com.cgc.tools.codegen.generators.DBQueryParamGenerator;
 import com.cgc.tools.codegen.generators.DaoGenerator;
-import com.cgc.tools.codegen.generators.EjbInterfaceGenerator;
 import com.cgc.tools.codegen.generators.EntryPageGenerator;
 import com.cgc.tools.codegen.generators.FormGenerator;
 import com.cgc.tools.codegen.generators.I18nGenerator;
@@ -33,7 +33,6 @@ import com.cgc.tools.codegen.generators.MapGenerator;
 import com.cgc.tools.codegen.generators.ServiceGenerator;
 import com.cgc.tools.codegen.generators.ServiceImplGenerator;
 import com.cgc.tools.codegen.generators.TestGenerator;
-import com.cgc.tools.codegen.generators.WebParamGenerator;
 import com.cgc.tools.codegen.preferences.PreferenceConstants;
 import com.cgc.tools.codegen.util.Constants;
 import com.cgc.tools.codegen.util.ValueStore;
@@ -226,12 +225,15 @@ public class CodegenNewWizard extends Wizard implements INewWizard {
 //				formGen.generate();
 				
 				Map<String, String> map = new HashMap<String, String>();
+				File templatesDir = new File("C:\\projects\\GitHub\\e-scaffolding\\src\\template\\jambo\\portal");
+				ArrayList<File> fileList = this.getFiles(templatesDir.getAbsolutePath(), new ArrayList<File>());
 				
-				map.put(entryGen.getClassName() + ".tsx", "EntryTemplet.templets");
-//				map.put(entryGen.getClassName() + ".tsx", "EntryTemplet.templets");
-//				map.put(entryGen.getClassName() + ".tsx", "EntryTemplet.templets");
-//				map.put(entryGen.getClassName() + ".tsx", "EntryTemplet.templets");
-				
+				for(File filetemp:fileList) {
+					String fileStr = filetemp.getAbsolutePath().substring(templatesDir.getAbsolutePath().length());
+					fileStr = fileStr.substring(0, fileStr.length() - 9);
+					String fileTempStr = filetemp.getAbsolutePath().substring(templatesDir.getAbsolutePath().length() - 6);
+					map.put(fileStr, fileTempStr);
+				}				
 				entryGen.generateBatch(map); //*.tsx
 			
 			}
@@ -273,5 +275,22 @@ public class CodegenNewWizard extends Wizard implements INewWizard {
 	public void setCloseConnFlag(boolean flag){
 		this.isCloseConn = flag ;
 	}
-
+	
+	public ArrayList<File> getFiles(String path, ArrayList<File> fileList) throws Exception {
+		//目标集合fileList
+		File file = new File(path);
+		if(file.isDirectory()){
+			File []files = file.listFiles();
+				for(File fileIndex:files){
+					//如果这个文件是目录，则进行递归搜索
+					if(fileIndex.isDirectory()){
+						getFiles(fileIndex.getPath(), fileList);
+					}else {
+						//如果文件是普通文件，则将文件句柄放入集合中
+						fileList.add(fileIndex);
+					}
+				}
+			}
+		return fileList;
+		}
 }

@@ -1,0 +1,47 @@
+import * as React from 'react';
+import { connect } from 'react-redux';
+import * as Loadable from 'react-loadable';
+
+import {
+  get${pojoFirstUpper}List,
+  paginationSwitch,
+} from './actions';
+import { getConfigurableAttributesData } from '../configurable-attributes/actions/index';
+import { ${pojoFirstUpper}Props } from './${pojoLowercase}';
+
+interface ${pojoFirstUpper}Dispatch {
+  get${pojoFirstUpper}List: Function;
+  paginationSwitch: Function;
+  getConfigurableAttributesData: Function;
+}
+
+const mapStateToProps = (state: any): ${pojoFirstUpper}Props => ({
+  name: '${pojoLowercase}',
+  summary: state.${pojoLowercase}.summary,
+  ${pojoLowercase}List: state.${pojoLowercase}.${pojoLowercase}List,
+  pagination: state.${pojoLowercase}.pagination,
+  listLoading: state.${pojoLowercase}.listLoading,
+  configurableAttributesData: [],
+});
+
+const mapDispatchToProps = (dispatch: Function): ${pojoFirstUpper}Dispatch => ({
+  get${pojoFirstUpper}List: (condition: object, pageIndex: number, onFailed?: Function) =>
+    dispatch(get${pojoFirstUpper}List(condition, pageIndex, onFailed)),
+  paginationSwitch: (condition: object, pageIndex: number, onFailed?: Function) =>
+    dispatch(paginationSwitch(condition, pageIndex, onFailed)),
+  getConfigurableAttributesData: (paras) => dispatch(getConfigurableAttributesData(paras)),
+});
+
+const ${pojoFirstUpper}: any = Loadable({
+  loader: () => import('./${pojoLowercase}'),
+  loading: () => null,
+  render(loaded, props) {
+    let Component = loaded.default;
+    return <Component {...props} />;
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(${pojoFirstUpper});

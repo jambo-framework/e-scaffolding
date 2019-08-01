@@ -1,0 +1,46 @@
+import {
+  ${pojoUppercase}_SUMMARY,
+  ${pojoUppercase}_LIST,
+  PAGINATION,
+  ${pojoUppercase}_DETAIL,
+  EDIT_${pojoUppercase},
+} from './${pojoLowercase}.constants';
+
+export const ${pojoLowercase}ReducerKey = '${pojoLowercase}';
+
+const initialState = {
+  summary: { total${pojoFirstUpper}: 0, pair${pojoFirstUpper}: 0, unPair${pojoFirstUpper}: 0 },
+  ${pojoLowercase}List: [],
+  listLoading: true,
+  pagination: { totalResult: 0, itemsPerPage: 1, startIndex: 1 },
+  detailData: {},
+  editData: {},
+};
+
+const ${pojoLowercase}Reducer = (state: any = initialState, action: FMS.Action) => {
+  let data = action.payload;
+  let newState = { ...state };
+  switch (action.type) {
+    case ${pojoUppercase}_SUMMARY:
+      newState.summary = data;
+      break;
+    case ${pojoUppercase}_LIST:
+      newState.listLoading = data.isLoading;
+      newState.${pojoLowercase}List = data.data;
+      break;
+    case PAGINATION:
+      newState.pagination = data;
+      break;
+    case ${pojoUppercase}_DETAIL:
+      newState.detailData = data;
+      break;
+    case EDIT_${pojoUppercase}:
+      newState.editData = data;
+      break;
+    default:
+      break;
+  }
+  return Object.assign({}, state, newState);
+};
+
+export default ${pojoLowercase}Reducer;
